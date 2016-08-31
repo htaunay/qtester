@@ -1,0 +1,14 @@
+{
+  "name": "qtester",
+  "version": "0.1.0",
+  "description": "Automatic Bing query tester for predefined expected answers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Henrique Taunay",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.74.0"
+  }
+}

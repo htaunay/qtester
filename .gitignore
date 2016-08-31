@@ -1,0 +1,5 @@
+# vi
+.*.sw[mnop]
+
+# node
+node_modules/
