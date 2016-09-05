@@ -1,4 +1,5 @@
 TODO
 ====
 
-[ ] Update package.json 
+[ ] Update package.json
+[ ] Check DOM text/attr given another attr

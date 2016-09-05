@@ -2,7 +2,7 @@ require("should");
 var checkDom = require("../lib/dom-checker");
 
 describe("The dom-check module", function() {
-   
+
     var simpleBody = "<p>This is a P tag</p><h1>This is a H1 tag</h1>";
     var bodyWithTags = "<span id='ABC'><a class='XYZ' href='localhost'>Link Name</a></span>";
 
@@ -16,7 +16,7 @@ describe("The dom-check module", function() {
         };
 
         checkDom(simpleBody, testObj, function(error, resultObj) {
-           
+
             resultObj["passed"].should.be.True();
             done();
         });
@@ -32,11 +32,11 @@ describe("The dom-check module", function() {
         };
 
         checkDom(simpleBody, testObj, function(error, resultObj) {
-           
+
             resultObj["passed"].should.be.False();
             done();
         });
-    }); 
+    });
 
     it("should return true to a correct 'contains' condition", function(done) {
 
@@ -48,7 +48,7 @@ describe("The dom-check module", function() {
         };
 
         checkDom(simpleBody, testObj, function(error, resultObj) {
-           
+
             resultObj["passed"].should.be.True();
             done();
         });
@@ -64,7 +64,7 @@ describe("The dom-check module", function() {
         };
 
         checkDom(simpleBody, testObj, function(error, resultObj) {
-           
+
             resultObj["passed"].should.be.False();
             done();
         });
@@ -80,7 +80,23 @@ describe("The dom-check module", function() {
         };
 
         checkDom(bodyWithTags, testObj, function(error, resultObj) {
-           
+
+            resultObj["passed"].should.be.True();
+            done();
+        });
+    });
+
+    it("should be able to access an element's value by its id", function(done) {
+
+        var testObj = {
+            "path": "span#ABC",
+            "attribute": "text",
+            "condition": "equals",
+            "expectedValue": "Link Name"
+        };
+
+        checkDom(bodyWithTags, testObj, function(error, resultObj) {
+
             resultObj["passed"].should.be.True();
             done();
         });
@@ -96,7 +112,7 @@ describe("The dom-check module", function() {
         };
 
         checkDom(bodyWithTags, testObj, function(error, resultObj) {
-           
+
             resultObj["passed"].should.be.True();
             done();
         });
