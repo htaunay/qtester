@@ -54,4 +54,37 @@ describe("The test-runner module", function() {
             done();
         });
     });
+
+    it("should run successfully with a file input", function(done) {
+
+        /*
+         * Contents of ./test/testInput.json
+         *
+         *
+         * {
+         *     "name": "FileInput",
+         *     "testRoot": {
+         *         "searchEngine": "bing",
+         *         "mkt": "pt-BR",
+         *         "query": "textinput",
+         *         "path": "input#sb_form_q",
+         *         "attribute": "value",
+         *         "condition": "contains",
+         *         "_children_": [
+         *             {"expectedValue": "tinp"},
+         *             {"expectedValue": "tiinp"}
+         *         ]
+         *     }
+         * }
+         *
+         */
+
+        runTest("./test/testInput.json", function(err, testResults) {
+
+            (err === null).should.be.True();
+            testResults[0].passed.should.be.True();
+            testResults[1].passed.should.be.False();
+            done();
+        });
+    });
 });
