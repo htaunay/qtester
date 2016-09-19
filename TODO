@@ -1,6 +1,7 @@
 TODO
 ====
 
+[ ] README
 [ ] Update package.json
 [ ] Check DOM text/attr given another attr
 [ ] File headers

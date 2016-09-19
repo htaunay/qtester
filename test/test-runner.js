@@ -9,6 +9,7 @@ describe("The test-runner module", function() {
 
             "name": "Single",
             "testRoot": {
+               "searchEngine": "bing",
                "mkt": "pt-BR",
                "query": "test",
                "path": "input#sb_form_q",
@@ -32,9 +33,10 @@ describe("The test-runner module", function() {
 
             "name": "Multiple",
             "testRoot": {
+                "searchEngine": "duckduckgo",
                 "mkt": "pt-BR",
                 "query": "passed",
-                "path": "input#sb_form_q",
+                "path": "input#search_form_input",
                 "attribute": "value",
                 "condition": "equals",
                 "_children_": [

@@ -3,11 +3,12 @@ var fs = require('fs');
 var checkDom = require("../lib/dom-checker");
 var executeQuery = require("../lib/query-executor");
 
-describe("The query-tester module", function() {
+describe("The query-executor module", function() {
 
     it("should return an expected body for a given query obj", function(done) {
     
         var queryObj = {
+            "searchEngine": "bing",
             "mkt": "pt-BR",
             "query": "test"
         };
