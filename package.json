@@ -1,7 +1,7 @@
 {
   "name": "qtester",
   "version": "0.1.0",
-  "description": "Automatic Bing query tester for predefined expected answers",
+  "description": "Tool for testing results from search engines",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 10000 test/*.js"
@@ -9,6 +9,8 @@
   "author": "Henrique Taunay",
   "license": "ISC",
   "dependencies": {
+    "asyncawait": "^1.0.6",
+    "bluebird": "^3.4.6",
     "jquery": "^3.1.0",
     "jsdom": "^9.4.5",
     "mocha": "^3.0.2",

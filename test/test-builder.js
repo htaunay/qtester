@@ -26,7 +26,7 @@ describe("The test-builder module", function() {
         buildTest(testSpec, function(err, testArray) {
 
             (err == null).should.be.True();
-            (testArray instanceof Array).should.be.True();  
+            (testArray instanceof Array).should.be.True();
 
             testArray.should.containEql(
                 { name: 'TestSpecName', mkt: 'pt-BR', q: 'X', test: '123' }

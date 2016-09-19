@@ -28,5 +28,4 @@ describe("The query-tester module", function() {
             });
         });
     });
-
 });
