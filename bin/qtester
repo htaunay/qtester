@@ -1,0 +1,132 @@
+#!/usr/bin/env node
+
+"use strict";
+require('colors');
+
+var path = require('path');
+var fs = require('fs');
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+
+var qtester = require(lib + '/qtester.js');
+
+// *************************** Private Methods ***************************** //
+
+var buildOutput = function(args) {
+
+    var output = null;
+    for(var i = 0; i < args.length; i++) {
+
+        if(output === null) output = args[i];
+        else output += '\n' + args[i];
+    }
+
+    return output;
+};
+
+var success = function() {
+
+    console.log(buildOutput(arguments).green.bold);
+};
+
+var error = function() {
+
+    console.log(buildOutput(arguments).red.bold);
+};
+
+var info = function() {
+
+    console.log(buildOutput(arguments).yellow);
+};
+
+var outputTestResults = function(testResults) {
+
+    var testMap = {};
+    var totalPassed = 0;
+    var totalTests = testResults.length;
+
+    for(var i = 0; i < testResults.length; i++) {
+
+        var result = testResults[i];
+        if(testMap[result.name] === undefined)
+            testMap[result.name] = {};
+
+        if(result.passed == true) {
+
+            if(testMap[result.name].passed === undefined)
+                testMap[result.name].passed = 1;
+            else
+                testMap[result.name].passed++;
+
+            totalPassed++;
+        }
+        else {
+
+            if(testMap[result.name].failed === undefined)
+                testMap[result.name].failed = 1;
+            else
+                testMap[result.name].failed++;
+
+            if(result.err !== undefined) {
+
+                error(
+                    'A ' + result.name + ' test failed with the error message:',
+                    result.err,
+                    'The failing test object is:',
+                    JSON.stringify(result),
+                    ''
+                );
+            }
+            else {
+
+                error(
+                    result.name + 'test failed.',
+                    '\tExpected value: [' + result.expectedValue + ']',
+                    '\tActual value: [' + result.actualValue + ']',
+                    '\tCondition: [' + result.condition + ']',
+                    ''
+                );
+            }
+        }
+    }
+
+    info('Final Results:');
+    success('A total of ' + totalPassed + ' from ' + totalTests + ' tests passed successfully');
+
+    var totalFailures = totalTests - totalPassed;
+    if(totalFailures > 0)
+        error('A total of ' + totalFailures + ' from ' + totalTests + ' tests failed');
+};
+
+// ***************************** Binary Main ******************************* //
+
+var main = function() {
+
+    var input = process.argv[2];
+
+    if(input == null || input.length == 0) {
+
+        error(
+            'No input given!',
+            'Please specify a json file or a string representing a valid test specification'
+        );
+    }
+    else {
+
+        qtester(input, function(err, testResults) {
+
+            if(err !== null) {
+
+                error(
+                    'An unexpected error occurred when running tests:',
+                    err.message
+                );
+
+                return;
+            }
+
+            outputTestResults(testResults);
+        });
+    }
+};
+
+main();
