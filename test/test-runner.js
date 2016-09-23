@@ -87,4 +87,47 @@ describe("The test-runner module", function() {
             done();
         });
     });
+
+    it("should throw an error when given invalid input", function(done) {
+
+        runTest("{ invalid json file }", function(err, testResults) {
+
+            (err === null).should.be.False();
+            var expectedError = 'Invalid test configuration given: "{ invalid json file }"';
+            err.message.should.be.eql(expectedError);
+
+            done();
+        });
+    });
+
+    it("should return an error object for invalid test variables", function(done) {
+
+        var invalidTestSpec = {
+
+            "name": "Multiple",
+            "testRoot": {
+                "searchEngine": "fakesearchengine", // <- problem
+                "mkt": "pt-BR",
+                "query": "passed",
+                "path": "input#search_form_input",
+                "attribute": "value",
+                "condition": "equals",
+                "_children_": [
+                    {"expectedValue": "passed"},
+                    {"expectedValue": "failed"}
+                ]
+            }
+        };
+
+        runTest(invalidTestSpec, function(err, testResults) {
+
+            (err === null).should.be.True();
+            testResults[0].passed.should.be.False();
+
+            var expectedError = "Unsuccessful response from fakesearchengine. Response = [undefined].";
+            testResults[0].error.message.should.be.eql(expectedError);
+
+            done();
+        });
+    });
 });
