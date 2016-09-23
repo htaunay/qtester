@@ -7,3 +7,5 @@ TODO
 [ ] Check DOM text/attr given another attr
 [ ] File headers
 [ ] MUCH better error logs
+[ ] TravisCI
+[ ] Coveralls
