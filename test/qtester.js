@@ -1,5 +1,5 @@
 require("should");
-var runTest = require("../lib/test-runner");
+var runTest = require("../lib/qtester");
 
 describe("The test-runner module", function() {
 
