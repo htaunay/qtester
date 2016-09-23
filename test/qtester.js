@@ -23,6 +23,8 @@ describe("The test-runner module", function() {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
+            testResults[0].name.should.be.eql('Single');
+
             done();
         });
     });
@@ -51,6 +53,8 @@ describe("The test-runner module", function() {
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
             testResults[1].passed.should.be.False();
+            testResults[1].name.should.be.eql('Multiple');
+
             done();
         });
     });
@@ -84,6 +88,8 @@ describe("The test-runner module", function() {
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
             testResults[1].passed.should.be.False();
+            testResults[1].name.should.be.eql('FileInput');
+
             done();
         });
     });
