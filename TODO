@@ -2,7 +2,7 @@ TODO
 ====
 
 [ ] README
-[ ] Add Yahoo and Google support
+[ ] Add Yahoo support
 [ ] Check DOM text/attr given another attr
 [ ] File headers
 [ ] MUCH better error logs
@@ -11,6 +11,7 @@ TODO
 DONE
 ====
 
+[x] Add Google support
 [x] TravisCI
 [x] Update package.json
 [x] JS file as in input support
