@@ -3,10 +3,14 @@ TODO
 
 [ ] README
 [ ] Add Yahoo and Google support
-[ ] Update package.json
 [ ] Check DOM text/attr given another attr
 [ ] File headers
 [ ] MUCH better error logs
 [ ] TravisCI
 [ ] Coveralls
-[ ] JS file as in input support
+
+DONE
+====
+
+[x] Update package.json
+[x] JS file as in input support
