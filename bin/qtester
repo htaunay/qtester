@@ -80,6 +80,8 @@ var outputTestResults = function(testResults) {
 
                 error(
                     result.name + 'test failed.',
+                    '\tTest query: [' + result.query + ']',
+                    '\tTest path: [' + result.path + ']',
                     '\tExpected value: [' + result.expectedValue + ']',
                     '\tActual value: [' + result.actualValue + ']',
                     '\tCondition: [' + result.condition + ']',
