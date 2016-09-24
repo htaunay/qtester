@@ -6,11 +6,11 @@ TODO
 [ ] Check DOM text/attr given another attr
 [ ] File headers
 [ ] MUCH better error logs
-[ ] TravisCI
 [ ] Coveralls
 
 DONE
 ====
 
+[x] TravisCI
 [x] Update package.json
 [x] JS file as in input support
