@@ -1,7 +1,7 @@
 {
   "name": "qtester",
   "version": "0.1.1",
-  "description": "Tool for automatically testing results from search engines",
+  "description": "A tool for automatically testing results from search engines",
   "main": "./lib/qtester",
   "bin": "./bin/qtester",
   "scripts": {

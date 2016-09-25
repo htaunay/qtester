@@ -1,17 +1,21 @@
 TODO
 ====
 
-[ ] README
+[ ] Test running feedback - CLI
+[ ] Re-try n times after failure to exclude timeouts
 [ ] Add Yahoo support
 [ ] Check DOM text/attr given another attr
 [ ] File headers
 [ ] MUCH better error logs
-[ ] Coveralls
+[ ] Test name cascading
 
 DONE
 ====
 
+[x] Refactor qtester unit-tests
+[x] README
 [x] Add Google support
 [x] TravisCI
+[x] Coveralls
 [x] Update package.json
 [x] JS file as in input support
