@@ -4,7 +4,18 @@
 
 # qtester
 
-TODO INDEX
+## Index
+
+* [Overview](#overview)
+* [Installing](#installing)
+* [The Test Spec](#the-test-spec)
+   * [Basics](#basics)
+   * [Keywords](#keywords)
+   * [Input Types](#input-types)
+* [Working with the package](#working-with-the-package)
+* [Working with the CLI](#working-with-the-cli)
+
+## Overview
 
 A tool for testing results from search engines. In a nutshell, the user can
 specify a set of tests through a JSON object, where each one will perform
@@ -12,10 +23,11 @@ a query to a given search engine and compare an element of the resulting DOM
 with a given condition.
 
 Therefore, each individual test should consist of:
-    * A text query with 0 to n additional url parameters
-    * A search engine
-    * A jQuery path to access an element of the DOM resulted from the given query
-    * An expected value of return and condition
+
+ * A text query with 0 to n additional url parameters
+ * A search engine
+ * A jQuery path to access an element of the DOM resulted from the given query
+ * An expected value of return and condition
 
 The main motivation of this tool is automatically guarantee that a set of
 specific answer experiences on search engines are triggering as expected.
@@ -23,7 +35,7 @@ specific answer experiences on search engines are triggering as expected.
 qtester allows - and incentives - the use of a tree-like data-structure to
 specify test routines, in order to avoid code repetition.
 
-## Instalatlion
+## Installing
 
 ```bash
 # Add package as dependency
@@ -44,7 +56,7 @@ follow the format shown in the example below:
 
 ```javascript
 // Tests if, when running a query through bing, the query input is placed
-//  correclty in the search box
+//  correctly in the search box
 {
     "name": "TestName",  
     "testRoot": {
@@ -60,7 +72,7 @@ follow the format shown in the example below:
 
 The root of the object should contain a **name** string and a **testRoot**
 object. The **testRoot** can consist of a single test - as shown above - or it
-can consist or a tree-like object working with the **_children_** keyword,
+can consist or a tree-like object working with the **children** keyword,
 which will result in the automatic generation of multiple tests, as exemplified
 below:
 
