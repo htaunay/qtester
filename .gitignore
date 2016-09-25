@@ -1,5 +1,6 @@
 # vi
 .*.sw[mnop]
 
-# node
+# node / npm
 node_modules/
+coverage/

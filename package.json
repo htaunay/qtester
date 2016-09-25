@@ -5,7 +5,8 @@
   "main": "./lib/qtester",
   "bin": "./bin/qtester",
   "scripts": {
-    "test": "mocha --timeout 10000 test/*.js"
+    "test": "mocha --timeout 10000 test/*.js",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "author": "Henrique Taunay",
   "license": "ISC",
@@ -18,5 +19,9 @@
     "mocha": "^3.0.2",
     "request": "^2.74.0",
     "should": "^11.1.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.14",
+    "istanbul": "^0.4.5"
   }
 }
