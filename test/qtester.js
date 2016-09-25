@@ -1,7 +1,26 @@
 require("should");
-var runTest = require("../lib/qtester");
 
-describe("The test-runner module", function() {
+var qtester = require("../lib/qtester");
+// Test wrapper, in order to avoid:
+// * waiting for timeouts after should exceptions
+// * wrtinting try/catches in all test cases
+var runTest = function(testSpec, done, cb) {
+
+    qtester(testSpec, function(err, testResults) {
+       
+        try {
+    
+            cb(err, testResults);
+            done();       
+        }
+        catch(err) {
+        
+            done(err) ;           
+        };
+    });
+};
+
+describe("The qteser module", function() {
 
     it("should run a single test successfully", function(done) {
 
@@ -19,13 +38,11 @@ describe("The test-runner module", function() {
             }
         };
 
-        runTest(testSpec, function(err, testResults) {
+        runTest(testSpec, done, function(err, testResults) {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
             testResults[0].name.should.be.eql('Single');
-
-            done();
         });
     });
 
@@ -48,14 +65,12 @@ describe("The test-runner module", function() {
             }
         };
 
-        runTest(testSpec, function(err, testResults) {
+        runTest(testSpec, done, function(err, testResults) {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
             testResults[1].passed.should.be.False();
             testResults[1].name.should.be.eql('Multiple');
-
-            done();
         });
     });
 
@@ -83,26 +98,22 @@ describe("The test-runner module", function() {
          *
          */
 
-        runTest("./test/testInput.json", function(err, testResults) {
+        runTest("./test/testInput.json", done, function(err, testResults) {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
             testResults[1].passed.should.be.False();
             testResults[1].name.should.be.eql('FileInput');
-
-            done();
         });
     });
 
     it("should throw an error when given invalid input", function(done) {
 
-        runTest("{ invalid json file }", function(err, testResults) {
+        runTest("{ invalid json file }", done, function(err, testResults) {
 
             (err === null).should.be.False();
             var expectedError = 'Invalid test configuration given: "{ invalid json file }"';
             err.message.should.be.eql(expectedError);
-
-            done();
         });
     });
 
@@ -110,7 +121,7 @@ describe("The test-runner module", function() {
 
         var invalidTestSpec = {
 
-            "name": "Multiple",
+            "name": "Invalid",
             "testRoot": {
                 "searchEngine": "fakesearchengine", // <- problem
                 "mkt": "pt-BR",
@@ -118,22 +129,17 @@ describe("The test-runner module", function() {
                 "path": "input#search_form_input",
                 "attribute": "value",
                 "condition": "equals",
-                "_children_": [
-                    {"expectedValue": "passed"},
-                    {"expectedValue": "failed"}
-                ]
+                "expectedValue": "failed"
             }
         };
 
-        runTest(invalidTestSpec, function(err, testResults) {
+        runTest(invalidTestSpec, done, function(err, testResults) {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.False();
 
-            var expectedError = "Unsuccessful response from fakesearchengine. Response = [undefined].";
-            testResults[0].error.message.should.be.eql(expectedError);
-
-            done();
+            var expectedError = "Incomplete or invalid query object given";
+            testResults[0].error.message.should.containEql(expectedError);
         });
     });
 });
