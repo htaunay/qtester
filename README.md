@@ -245,7 +245,7 @@ runTest(testSpec, function(err, testResults) {
 ## Working with the CLI
 
 To run qtester from the command line, just pass a single input following one
-of the [supported formats](#Input types).
+of the [supported formats](#input-types).
 
 ```bash
 # Runs an example test spec in javascript file format from command line,
