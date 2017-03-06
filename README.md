@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/htaunay/qtester.svg?branch=master)](https://travis-ci.org/htaunay/qtester)
 [![Coverage Status](https://coveralls.io/repos/github/htaunay/qtester/badge.svg?branch=master)](https://coveralls.io/github/htaunay/qtester?branch=master)
+[![View this project on NPM](https://img.shields.io/npm/v/qtester.svg)](https://npmjs.org/package/qtester)
 [![Join the chat at https://gitter.im/htaunay/qtester](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/htaunay/qtester?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # qtester
@@ -245,7 +246,7 @@ runTest(testSpec, function(err, testResults) {
 ## Working with the CLI
 
 To run qtester from the command line, just pass a single input following one
-of the [supported formats](#Input types).
+of the [supported formats](#input-types).
 
 ```bash
 # Runs an example test spec in javascript file format from command line,
