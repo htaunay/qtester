@@ -74,7 +74,7 @@ describe("The qteser module", function() {
         });
     });
 
-    it("should run successfully with a file input", function(done) {
+    it("should run successfully with a json file input", function(done) {
 
         /*
          * Contents of ./test/testInput.json
@@ -99,6 +99,40 @@ describe("The qteser module", function() {
          */
 
         runTest("./test/testInput.json", done, function(err, testResults) {
+
+            (err === null).should.be.True();
+            testResults[0].passed.should.be.True();
+            testResults[1].passed.should.be.False();
+            testResults[1].name.should.be.eql('FileInput');
+        });
+    });
+
+    it("should run successfully with a js file input", function(done) {
+
+        /*
+         * Contents of ./test/testInput.js
+         *
+         *
+         * var test = {
+         *     "name": "FileInput",
+         *     "testRoot": {
+         *         "searchEngine": "bing",
+         *         "mkt": "pt-BR",
+         *         "query": "textinput",
+         *         "path": "input#sb_form_q",
+         *         "attribute": "value",
+         *         "condition": "contains",
+         *         "_children_": [
+         *             {"expectedValue": "tinp"},
+         *             {"expectedValue": "tiinp"}
+         *         ]
+         *     }
+         * };
+         *
+         * module.exports = test;
+         */
+
+        runTest("./test/testInput.js", done, function(err, testResults) {
 
             (err === null).should.be.True();
             testResults[0].passed.should.be.True();
