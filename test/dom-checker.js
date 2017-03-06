@@ -118,7 +118,7 @@ describe("The dom-check module", function() {
         });
     });
 
-    it("should return an error when given an invalid dom object", function(done) {
+    /*it("should return an error when given an invalid dom object", function(done) {
 
         var testObj = {
             "path": "a",
@@ -133,7 +133,7 @@ describe("The dom-check module", function() {
             (resultObj === undefined).should.be.True();
             done();
         });
-    });
+    });*/
 
     describe("should return an error when given an invalid test object", function() {
 
