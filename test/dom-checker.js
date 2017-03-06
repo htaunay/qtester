@@ -117,4 +117,88 @@ describe("The dom-check module", function() {
             done();
         });
     });
+
+    it("should return an error when given an invalid dom object", function(done) {
+
+        var testObj = {
+            "path": "a",
+            "attribute": "href",
+            "condition": "equals",
+            "expectedValue": "localhost"
+        };
+
+        checkDom({"something": 123}, testObj, function(error, resultObj) {
+
+            (error == null).should.be.False();
+            (resultObj === undefined).should.be.True();
+            done();
+        });
+    });
+
+    describe("should return an error when given an invalid test object", function() {
+
+        it("with a missing 'path' variable", function(done) {
+
+            var testObj = {
+                "attribute": "href",
+                "condition": "equals",
+                "expectedValue": "localhost"
+            };
+
+            checkDom(bodyWithTags, testObj, function(error, resultObj) {
+
+                (error == null).should.be.False();
+                (resultObj === undefined).should.be.True();
+                done();
+            });
+        });
+
+        it("with a missing 'attribute' variable", function(done) {
+
+            var testObj = {
+                "path": "a",
+                "condition": "equals",
+                "expectedValue": "localhost"
+            };
+
+            checkDom(bodyWithTags, testObj, function(error, resultObj) {
+
+                (error == null).should.be.False();
+                (resultObj === undefined).should.be.True();
+                done();
+            });
+        });
+
+        it("with a missing 'condition' variable", function(done) {
+
+            var testObj = {
+                "path": "a",
+                "attribute": "href",
+                "expectedValue": "localhost"
+            };
+
+            checkDom(bodyWithTags, testObj, function(error, resultObj) {
+
+                (error == null).should.be.False();
+                (resultObj === undefined).should.be.True();
+                done();
+            });
+        });
+
+        it("with a missing 'expectedValue' variable", function(done) {
+
+            var testObj = {
+                "path": "a",
+                "attribute": "href",
+                "condition": "equals"
+            };
+
+            checkDom(bodyWithTags, testObj, function(error, resultObj) {
+
+                (error == null).should.be.False();
+                (resultObj === undefined).should.be.True();
+                done();
+            });
+        });
+    });
 });

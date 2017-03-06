@@ -44,4 +44,34 @@ describe("The test-builder module", function() {
             done();
         });
     });
+
+    it("should return an error when given an invalid test specification", function(done) {
+
+         // Test spec with missing 'testRoot' property
+         var testSpec = {
+
+            "name": "TestSpecName",
+            "genericProperty": {
+               "a": "b",
+               "c": 123
+            }
+        };
+
+        buildTest(testSpec, function(err, testArray) {
+
+            (err == null).should.be.False();
+            (testArray === undefined).should.be.True();
+            done();
+        });
+    });
+
+    it("should return an error when given an empry test specification", function(done) {
+
+        buildTest(null, function(err, testArray) {
+
+            (err == null).should.be.False();
+            (testArray === undefined).should.be.True();
+            done();
+        });
+    });
 });

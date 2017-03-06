@@ -7,15 +7,15 @@ var qtester = require("../lib/qtester");
 var runTest = function(testSpec, done, cb) {
 
     qtester(testSpec, function(err, testResults) {
-       
+
         try {
-    
+
             cb(err, testResults);
-            done();       
+            done();
         }
         catch(err) {
-        
-            done(err) ;           
+
+            done(err) ;
         };
     });
 };
